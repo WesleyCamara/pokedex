@@ -3,10 +3,10 @@ import { ReactComponent as Filter } from '../../assets/img/filter.svg';
 
 export const FilterTypesWrapper = styled.div`
   padding: 1rem;
-  width: 40rem;
+  width: 20em;
   border-radius: 0.625rem;
-  color: var(--color-text);
-  background: var(--color-light);
+  color: ${(props) => props.theme.colors.text};
+  background: ${(props) => props.theme.colors.background};
   font-size: 1rem;
   margin: 0.5rem 1rem;
   position: relative;
@@ -16,13 +16,16 @@ export const FilterTypesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     white-space: nowrap;
+    cursor: pointer;
   }
 
   div:nth-child(2) {
+    opacity: 0;
+    pointer-events: none;
     display: flex;
     flex-direction: column;
     position: absolute;
-    background: var(--color-light);
+    background: ${(props) => props.theme.colors.background};
     top: 2.7rem;
     left: 0;
     width: 100%;
@@ -30,38 +33,31 @@ export const FilterTypesWrapper = styled.div`
     font-size: 1rem;
     overflow-y: scroll;
     overflow-x: inherit;
-
-    border-top: 1px solid var(--color-primary);
+    border-top: 1px solid ${(props) => props.theme.colors.primary};
     z-index: 1;
+    transition: 0.2s;
+
+    ${(props) =>
+      props.showTypes &&
+      css`
+        opacity: 1;
+        pointer-events: initial;
+      `};
   }
-
-  /* label {
-    padding: 0.5rem 1rem;
-    margin: 0.1rem 0;
-    cursor: pointer;
-
-    &:hover {
-      background: blue;
-    }
-  }
-
-  input {
-    display: none;
-  } */
 `;
 
 export const FilterIcon = styled(Filter)`
   * {
-    stroke: var(--color-primary);
-    fill: var(--color-primary);
+    stroke: ${(props) => props.theme.colors.primary};
+    fill: ${(props) => props.theme.colors.primary};
   }
 `;
 
 export const Label = styled.label`
-  padding: 0.5rem 1rem;
-  margin: 0.1rem 0;
+  padding: 0.6rem 1rem;
   cursor: pointer;
   transition: 0.2s;
+  border-bottom: 1px solid ${(props) => props.theme.colors.secondaryLight};
 
   input {
     display: none;
@@ -70,6 +66,7 @@ export const Label = styled.label`
   ${(props) =>
     props.selected &&
     css`
-      background: var(--color-primary);
+      background: ${(props) => props.theme.colors.secondary};
+      color: ${(props) => props.theme.colors.background};
     `};
 `;

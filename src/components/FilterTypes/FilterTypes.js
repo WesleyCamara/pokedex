@@ -3,8 +3,8 @@ import { FilterTypesWrapper, FilterIcon, Label } from './styles';
 import { getTypes } from '../../services/pokemonsService';
 
 const FilterTypes = () => {
+  const [showTypes, setShowTypes] = useState(false);
   const [types, setTypes] = useState(null);
-
   const [selectedTypes, setSelectedTypes] = useState([]);
 
   async function loadTypes() {
@@ -29,8 +29,12 @@ const FilterTypes = () => {
   }, []);
 
   return (
-    <FilterTypesWrapper>
-      <div>
+    <FilterTypesWrapper showTypes={showTypes}>
+      <div
+        onClick={() => {
+          setShowTypes(!showTypes);
+        }}
+      >
         Pesquisar por tipo:
         <FilterIcon />
       </div>

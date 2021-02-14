@@ -1,13 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import light from './styles/themes/light';
+import GlobalStyle from './styles/global';
 import Home from './pages/Home';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={light}>
+      <GlobalStyle />
+      <Home />
+    </ThemeProvider>
   );
 }
 
