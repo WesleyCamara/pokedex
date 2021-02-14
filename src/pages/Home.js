@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header/Header';
+import List from '../components/List/List';
 
 const Home = () => {
+  const [pokemonsList, setPokemonsList] = useState([]);
+
   return (
     <>
-      <Header />
+      <Header setPokemonsList={setPokemonsList} />
+      <List pokemonsList={pokemonsList} />
     </>
   );
 };
