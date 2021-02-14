@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
 import FilterTypes from '../FilterTypes/FilterTypes';
 
 import { getPokemon } from '../../services/pokemonsService';
 
+import { GlobalContext } from '../../GlobalContext';
 import { HeaderWrapper } from './styles';
 
 const Header = ({ setPokemonsList }) => {
+  const global = useContext(GlobalContext);
   const [pokemon, setPokemon] = useState('');
 
   async function handleSubmit(event) {
@@ -13,6 +16,7 @@ const Header = ({ setPokemonsList }) => {
 
     const data = await getPokemon(pokemon);
     setPokemonsList(data);
+    global.setPokemonDetails(data);
   }
 
   async function handleChange({ target }) {

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../../GlobalContext';
 
-const List = ({ pokemonsList }) => {
+const List = () => {
+  const global = useContext(GlobalContext);
+
+  const { pokemonDetails } = global;
   return (
     <>
-      {pokemonsList && (
+      {global.pokemonDetails && (
         <img
-          src={pokemonsList.sprites?.other['official-artwork'].front_default}
-          alt={pokemonsList.name}
+          src={pokemonDetails.sprites?.other['official-artwork'].front_default}
+          alt={pokemonDetails.name}
         />
       )}
     </>

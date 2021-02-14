@@ -8,8 +8,6 @@ export const getTypes = async () => {
     return response.json();
   } catch (err) {
     console.error(err);
-  } finally {
-    console.log('loading false');
   }
 };
 
@@ -21,7 +19,5 @@ export const getPokemon = async (pokemon) => {
     return response.json();
   } catch (err) {
     console.error(err);
-  } finally {
-    console.log('loading false');
   }
 };
