@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Types.module.css';
-import { getTypes } from '../services/pokemonsService';
+import { FilterTypesWrapper, FilterIcon, Label } from './styles';
+import { getTypes } from '../../services/pokemonsService';
 
-const Types = () => {
+const FilterTypes = () => {
   const [types, setTypes] = useState(null);
 
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -29,31 +29,30 @@ const Types = () => {
   }, []);
 
   return (
-    <>
-      <div className={styles.types}>
+    <FilterTypesWrapper>
+      <div>
+        Pesquisar por tipo:
+        <FilterIcon />
+      </div>
+      <div>
         {types &&
           types.map((type) => {
             if (type.name && type.name !== 'unknown') {
               return (
-                <label
-                  key={type.name}
-                  className={`${
-                    styleSelectedItem(type.name) && styles.selected
-                  }`}
-                >
+                <Label key={type.name} selected={styleSelectedItem(type.name)}>
                   <input
                     type="checkbox"
                     value={type.name}
                     onChange={handleChange}
                   />
                   {type.name}
-                </label>
+                </Label>
               );
             } else return null;
           })}
       </div>
-    </>
+    </FilterTypesWrapper>
   );
 };
 
-export default Types;
+export default FilterTypes;
