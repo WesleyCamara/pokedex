@@ -7,7 +7,7 @@ import { getPokemon } from '../../services/pokemonsService';
 import { GlobalContext } from '../../GlobalContext';
 import { HeaderWrapper } from './styles';
 
-const Header = ({ setPokemonsList }) => {
+const Header = () => {
   const global = useContext(GlobalContext);
   const [pokemon, setPokemon] = useState('');
 
@@ -15,8 +15,8 @@ const Header = ({ setPokemonsList }) => {
     event.preventDefault();
 
     const data = await getPokemon(pokemon);
-    setPokemonsList(data);
-    global.setPokemonDetails(data);
+
+    global.setPokemonData(data);
   }
 
   async function handleChange({ target }) {

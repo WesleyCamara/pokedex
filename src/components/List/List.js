@@ -1,18 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext';
+import DetailsPokemon from '../DetailsPokemon/DetailsPokemon';
 
 const List = () => {
   const global = useContext(GlobalContext);
 
-  const { pokemonDetails } = global;
   return (
     <>
-      {global.pokemonDetails && (
-        <img
-          src={pokemonDetails.sprites?.other['official-artwork'].front_default}
-          alt={pokemonDetails.name}
-        />
-      )}
+      <DetailsPokemon />
     </>
   );
 };
