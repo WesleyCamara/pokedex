@@ -1,18 +1,10 @@
 import styled from 'styled-components';
 
-export const DetailsWrapper = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 10rem);
-
-  section {
-    background: ${(props) => props.theme.colors.background};
-    width: 50rem;
-    border-radius: 20px;
-    box-shadow: rgb(0 0 0 / 25%) 10px 10px 30px;
-    display: grid;
-  }
+export const DetailsWrapper = styled.section`
+  background: ${(props) => props.theme.colors.background};
+  max-width: 50rem;
+  border-radius: 20px;
+  box-shadow: rgb(0 0 0 / 25%) 10px 10px 30px;
 
   h1 {
     background: ${(props) => props.theme.colors.secondary};
@@ -27,21 +19,28 @@ export const DetailsWrapper = styled.main`
 export const DataWrapper = styled.div`
   padding: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 
   img {
-    flex: 1;
+    padding-top: 4rem;
+    width: 50%;
+    min-width: 20rem;
   }
 
   div {
-    flex: 1;
+    padding-top: 4rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
   }
 
   p {
     width: 15rem;
-    background: ${(props) => props.theme.colors.secondary};
+    background: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.background};
     font-size: 1.5rem;
     text-transform: capitalize;
