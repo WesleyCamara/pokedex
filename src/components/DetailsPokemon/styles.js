@@ -24,13 +24,13 @@ export const DataWrapper = styled.div`
   flex-wrap: wrap;
 
   img {
-    padding-top: 4rem;
+    padding-top: 3rem 0;
     width: 50%;
     min-width: 20rem;
   }
 
   div {
-    padding-top: 4rem;
+    padding-top: 3rem 0;
     width: 50%;
     display: flex;
     flex-direction: column;

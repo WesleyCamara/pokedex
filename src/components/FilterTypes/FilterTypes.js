@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FilterTypesWrapper, FilterIcon, Label } from './styles';
 import { getTypes } from '../../services/pokemonsService';
 
+import { GlobalContext } from '../../GlobalContext';
+
 const FilterTypes = () => {
+  const global = useContext(GlobalContext);
+
   const [showTypes, setShowTypes] = useState(false);
   const [types, setTypes] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -14,6 +18,8 @@ const FilterTypes = () => {
   }
 
   function handleChange({ target }) {
+    global.setPokemon('');
+
     if (target.checked) {
       setSelectedTypes([...selectedTypes, target.value]);
     } else {
@@ -27,6 +33,10 @@ const FilterTypes = () => {
   useEffect(() => {
     loadTypes();
   }, []);
+
+  useEffect(() => {
+    global.setListTypes(selectedTypes);
+  }, [global, selectedTypes]);
 
   return (
     <FilterTypesWrapper showTypes={showTypes}>

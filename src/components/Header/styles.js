@@ -4,9 +4,13 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme.colors.primaryLight};
-  min-height: 10rem;
+  background: ${(props) => props.theme.colors.primary};
+  height: 12rem;
   padding: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    height: 15rem;
+  }
 
   form {
     display: flex;
@@ -18,7 +22,6 @@ export const HeaderWrapper = styled.header`
   input,
   button {
     padding: 1rem;
-    width: 40rem;
     border-radius: 0.625rem;
     color: ${(props) => props.theme.colors.text};
     background: ${(props) => props.theme.colors.background};
@@ -26,8 +29,13 @@ export const HeaderWrapper = styled.header`
     margin: 0.5rem 1rem;
     transition: 0.2s;
   }
+
+  input {
+    width: 30vw;
+  }
+
   button {
-    max-width: 20rem;
+    width: 10rem;
     cursor: pointer;
 
     &:hover {

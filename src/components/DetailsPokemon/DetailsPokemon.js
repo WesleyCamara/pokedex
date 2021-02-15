@@ -8,7 +8,6 @@ const DetailsPokemon = () => {
 
   const { pokemonData } = global;
   const { types } = pokemonData;
-  console.log('types: ', types);
 
   return (
     <DetailsWrapper>

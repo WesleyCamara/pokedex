@@ -21,3 +21,21 @@ export const getPokemon = async (pokemon) => {
     console.error(err);
   }
 };
+
+export const getPokemonByType = async (type) => {
+  let pokemonsList = [];
+  type.forEach(async (item) => {
+    try {
+      const response = await fetch(`${baseUrl}type/${item}`);
+      if (!response.ok)
+        throw new Error(
+          `Não foram encontrados Pokémons com o tipo selecionado, erro: ${response.status}`,
+        );
+      const json = await response.json();
+      pokemonsList.push(...json.pokemon);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+  return pokemonsList;
+};

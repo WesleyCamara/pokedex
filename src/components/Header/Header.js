@@ -1,26 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import FilterTypes from '../FilterTypes/FilterTypes';
 
-import { getPokemon } from '../../services/pokemonsService';
+import { getPokemon, getPokemonByType } from '../../services/pokemonsService';
 
 import { GlobalContext } from '../../GlobalContext';
 import { HeaderWrapper } from './styles';
 
 const Header = () => {
   const global = useContext(GlobalContext);
-  const [pokemon, setPokemon] = useState('');
+  const { pokemon } = global;
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-    const data = await getPokemon(pokemon);
-
-    global.setPokemonData(data);
+    if (pokemon) {
+      const data = await getPokemon(pokemon);
+      global.setPokemonData(data);
+    } else if (global.listTypes) {
+      const data = await getPokemonByType(global.listTypes);
+      global.setListPokemons(data);
+    }
   }
 
   async function handleChange({ target }) {
-    setPokemon(target.value.toLowerCase().trim());
+    global.setPokemon(target.value.toLowerCase().trim());
   }
 
   return (
@@ -31,6 +34,7 @@ const Header = () => {
           placeholder="Qual pokémon você quer pesquisar? ex. 
 Charmander"
           onChange={handleChange}
+          autoFocus={true}
         />
         <FilterTypes />
 
