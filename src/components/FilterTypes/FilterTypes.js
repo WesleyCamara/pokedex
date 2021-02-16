@@ -57,6 +57,7 @@ const FilterTypes = () => {
       </div>
       {showFilterTypes && (
         <div>
+          <span onClick={() => setShowFilterTypes(false)}>X</span>
           {types &&
             types.map((type) => {
               if (type.name && type.name !== 'unknown') {

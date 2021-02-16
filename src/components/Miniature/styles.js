@@ -11,6 +11,7 @@ export const MiniatureCard = styled.div`
   font-size: 1.5rem;
   position: relative;
   cursor: pointer;
+  transition: transform 0.2s;
 
   ::before {
     content: '+';
@@ -19,6 +20,11 @@ export const MiniatureCard = styled.div`
     bottom: 0.5rem;
     right: 1rem;
     position: absolute;
+  }
+
+  &:hover {
+    box-shadow: rgb(0 0 0 / 25%) 10px 10px 30px;
+    transform: scale(1.04);
   }
 
   h2 {

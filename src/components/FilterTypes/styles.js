@@ -37,6 +37,7 @@ export const FilterTypesWrapper = styled.div`
     overflow-y: scroll;
     overflow-x: inherit;
     border-top: 1px solid ${(props) => props.theme.colors.primary};
+    box-shadow: rgb(0 0 0 / 25%) 10px 10px 30px;
     z-index: 1;
 
     ::-webkit-scrollbar {
@@ -59,6 +60,16 @@ export const FilterTypesWrapper = styled.div`
         transform: translateY(0);
         opacity: 1;
       }
+    }
+
+    span {
+      display: grid;
+      font-weight: 600;
+      color: ${(props) => props.theme.colors.text};
+      padding: 0.5rem 1rem;
+      text-align: right;
+      background: ${(props) => props.theme.colors.primaryLight};
+      cursor: pointer;
     }
   }
 `;

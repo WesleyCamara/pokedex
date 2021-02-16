@@ -22,15 +22,16 @@ const DetailsPokemon = () => {
               alt={pokemonData.name}
             />
             <div>
-              Altura:
+              <h3> Altura:</h3>
               <p>
                 <span>{pokemonData.height}</span>
               </p>
-              Peso:
+              <h3>Peso:</h3>
               <p>
                 <span>{pokemonData.weight}</span>
               </p>
-              Tipo:
+              <h3> Tipo:</h3>
+
               {pokemonData.types &&
                 pokemonData.types.map((item) => (
                   <p key={item.slot}>{item.type.name}</p>

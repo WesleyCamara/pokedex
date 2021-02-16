@@ -48,9 +48,6 @@ export const DataWrapper = styled.div`
     border-radius: 15px;
     margin: 0.5rem;
     white-space: nowrap;
-
-    span {
-      margin-left: 1rem;
-    }
+    text-align: center;
   }
 `;
