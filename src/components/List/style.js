@@ -9,6 +9,11 @@ export const Main = styled.main`
   @media screen and (max-width: 1024px) {
     padding: 4rem 1rem;
   }
+
+  h1 {
+    font-size: 1.5rem;
+    color: ${(props) => props.theme.colors.primary};
+  }
 `;
 
 export const ListMiniatures = styled.section`

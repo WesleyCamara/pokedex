@@ -12,22 +12,25 @@ const DetailsPokemon = () => {
     <>
       {pokemonData && (
         <DetailsWrapper>
-          <h1>{pokemonData.name}</h1>
+          <h1>
+            <span> #{pokemonData.id}</span> {pokemonData.name}
+          </h1>
+
           <DataWrapper>
             <img
               src={pokemonData.sprites?.other['official-artwork'].front_default}
               alt={pokemonData.name}
             />
             <div>
-              Height:
+              Altura:
               <p>
                 <span>{pokemonData.height}</span>
               </p>
-              Weight:
+              Peso:
               <p>
                 <span>{pokemonData.weight}</span>
               </p>
-              Type:
+              Tipo:
               {pokemonData.types &&
                 pokemonData.types.map((item) => (
                   <p key={item.slot}>{item.type.name}</p>

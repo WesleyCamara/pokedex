@@ -18,6 +18,7 @@ const Header = () => {
     listTypes,
     setListPokemons,
     setPokemonData,
+    setNotFound,
   } = global;
   const input = useRef();
 
@@ -26,20 +27,27 @@ const Header = () => {
     if (data) {
       setPokemonData(data);
       setShowDetails(true);
+    } else {
+      setNotFound(true);
     }
+    setLoading(false);
   };
 
   const getListPokemon = async (listTypes) => {
     const data = await getPokemonByType(listTypes);
+
     if (data) {
       setListPokemons(data);
       setShowDetails(false);
     }
+    setLoading(false);
   };
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+    setListPokemons([]);
+    setShowDetails(false);
+    setNotFound(false);
     setLoading(true);
 
     if (pokemon) {
@@ -47,7 +55,6 @@ const Header = () => {
     } else if (listTypes) {
       getListPokemon(listTypes);
     }
-    setLoading(false);
   }
 
   async function handleChange({ target }) {
