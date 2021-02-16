@@ -6,14 +6,12 @@ import { GlobalContext } from '../../GlobalContext';
 
 const FilterTypes = () => {
   const global = useContext(GlobalContext);
-
-  const [showTypes, setShowTypes] = useState(false);
+  const { showFilterTypes, setShowFilterTypes } = global;
   const [types, setTypes] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
   async function loadTypes() {
     const { results } = await getTypes();
-
     if (results) setTypes(results);
   }
 
@@ -38,33 +36,42 @@ const FilterTypes = () => {
     global.setListTypes(selectedTypes);
   }, [global, selectedTypes]);
 
+  useEffect(() => {
+    if (!showFilterTypes) setSelectedTypes([]);
+  }, [showFilterTypes]);
+
   return (
-    <FilterTypesWrapper showTypes={showTypes}>
+    <FilterTypesWrapper>
       <div
         onClick={() => {
-          setShowTypes(!showTypes);
+          setShowFilterTypes(!showFilterTypes);
         }}
       >
         Pesquisar por tipo:
         <FilterIcon />
       </div>
-      <div>
-        {types &&
-          types.map((type) => {
-            if (type.name && type.name !== 'unknown') {
-              return (
-                <Label key={type.name} selected={styleSelectedItem(type.name)}>
-                  <input
-                    type="checkbox"
-                    value={type.name}
-                    onChange={handleChange}
-                  />
-                  {type.name}
-                </Label>
-              );
-            } else return null;
-          })}
-      </div>
+      {showFilterTypes && (
+        <div>
+          {types &&
+            types.map((type) => {
+              if (type.name && type.name !== 'unknown') {
+                return (
+                  <Label
+                    key={type.name}
+                    selected={styleSelectedItem(type.name)}
+                  >
+                    <input
+                      type="checkbox"
+                      value={type.name}
+                      onChange={handleChange}
+                    />
+                    {type.name}
+                  </Label>
+                );
+              } else return null;
+            })}
+        </div>
+      )}
     </FilterTypesWrapper>
   );
 };

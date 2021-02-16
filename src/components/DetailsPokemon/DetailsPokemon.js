@@ -7,31 +7,36 @@ const DetailsPokemon = () => {
   const global = useContext(GlobalContext);
 
   const { pokemonData } = global;
-  const { types } = pokemonData;
 
   return (
-    <DetailsWrapper>
-      <h1>{pokemonData.name}</h1>
-      <DataWrapper>
-        <img
-          src={pokemonData.sprites?.other['official-artwork'].front_default}
-          alt={pokemonData.name}
-        />
-        <div>
-          Height:
-          <p>
-            <span>{pokemonData.height}</span>
-          </p>
-          Weight:
-          <p>
-            <span>{pokemonData.weight}</span>
-          </p>
-          Type:
-          {types &&
-            types.map((item) => <p key={item.slot}>{item.type.name}</p>)}
-        </div>
-      </DataWrapper>
-    </DetailsWrapper>
+    <>
+      {pokemonData && (
+        <DetailsWrapper>
+          <h1>{pokemonData.name}</h1>
+          <DataWrapper>
+            <img
+              src={pokemonData.sprites?.other['official-artwork'].front_default}
+              alt={pokemonData.name}
+            />
+            <div>
+              Height:
+              <p>
+                <span>{pokemonData.height}</span>
+              </p>
+              Weight:
+              <p>
+                <span>{pokemonData.weight}</span>
+              </p>
+              Type:
+              {pokemonData.types &&
+                pokemonData.types.map((item) => (
+                  <p key={item.slot}>{item.type.name}</p>
+                ))}
+            </div>
+          </DataWrapper>
+        </DetailsWrapper>
+      )}
+    </>
   );
 };
 

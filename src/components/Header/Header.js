@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 
 import FilterTypes from '../FilterTypes/FilterTypes';
 
@@ -9,7 +9,8 @@ import { HeaderWrapper } from './styles';
 
 const Header = () => {
   const global = useContext(GlobalContext);
-  const { pokemon } = global;
+  const { pokemon, showFilterTypes, setShowFilterTypes } = global;
+  const input = useRef();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -23,8 +24,13 @@ const Header = () => {
   }
 
   async function handleChange({ target }) {
+    setShowFilterTypes(false);
     global.setPokemon(target.value.toLowerCase().trim());
   }
+
+  useEffect(() => {
+    if (showFilterTypes) input.current.value = '';
+  }, [showFilterTypes]);
 
   return (
     <HeaderWrapper>
@@ -35,6 +41,7 @@ const Header = () => {
 Charmander"
           onChange={handleChange}
           autoFocus={true}
+          ref={input}
         />
         <FilterTypes />
 

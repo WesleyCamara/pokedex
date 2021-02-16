@@ -20,8 +20,6 @@ export const FilterTypesWrapper = styled.div`
   }
 
   div:nth-child(2) {
-    opacity: 0;
-    pointer-events: none;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -35,14 +33,28 @@ export const FilterTypesWrapper = styled.div`
     overflow-x: inherit;
     border-top: 1px solid ${(props) => props.theme.colors.primary};
     z-index: 1;
-    transition: 0.2s;
 
-    ${(props) =>
-      props.showTypes &&
-      css`
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: ${(props) => props.theme.colors.primary};
+      border-radius: 6px;
+    }
+
+    animation: fadein 0.5s forwards;
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        transform: translateY(0);
         opacity: 1;
-        pointer-events: initial;
-      `};
+      }
+    }
   }
 `;
 
