@@ -12,7 +12,6 @@ const Miniature = ({ data }) => {
 
   const loadPokemonData = async () => {
     const data = await getPokemonData(pokemon.url);
-    console.log('data: ', data);
     setPokemonData(data);
   };
 

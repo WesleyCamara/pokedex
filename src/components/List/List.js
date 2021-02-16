@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext';
 import { Main, ListMiniatures } from './style';
 import DetailsPokemon from '../DetailsPokemon/DetailsPokemon';
@@ -6,17 +6,19 @@ import Miniature from '../Miniature/Miniature';
 
 const List = () => {
   const global = useContext(GlobalContext);
-  const { loading, listPokemons } = global;
-  console.log('listPokemons: ', listPokemons);
+  const { loading, listPokemons, showDetails } = global;
 
   return (
     <Main>
       {loading && <h1>Loading...</h1>}
-      {/* <DetailsPokemon /> */}
+      {showDetails && <DetailsPokemon />}
 
-      <ListMiniatures>
-        {listPokemons && listPokemons.map((item) => <Miniature data={item} />)}
-      </ListMiniatures>
+      {!showDetails && (
+        <ListMiniatures>
+          {listPokemons &&
+            listPokemons.map((item) => <Miniature data={item} />)}
+        </ListMiniatures>
+      )}
     </Main>
   );
 };

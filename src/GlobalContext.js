@@ -9,6 +9,7 @@ export const GlobalStorage = ({ children }) => {
   const [listTypes, setListTypes] = useState({});
   const [listPokemons, setListPokemons] = useState([]);
   const [showFilterTypes, setShowFilterTypes] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <GlobalContext.Provider
@@ -25,6 +26,8 @@ export const GlobalStorage = ({ children }) => {
         setPokemon,
         showFilterTypes,
         setShowFilterTypes,
+        showDetails,
+        setShowDetails,
       }}
     >
       {children}
