@@ -39,3 +39,14 @@ export const getPokemonByType = async (type) => {
   });
   return pokemonsList;
 };
+
+export const getPokemonData = async (url) => {
+  try {
+    const response = await fetch(`${url}`);
+    if (!response.ok)
+      throw new Error(`Pokémon não encontrado, erro: ${response.status}`);
+    return response.json();
+  } catch (err) {
+    console.error(err);
+  }
+};

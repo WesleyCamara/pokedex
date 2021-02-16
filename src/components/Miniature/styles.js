@@ -10,6 +10,7 @@ export const MiniatureCard = styled.div`
   font-weight: 600;
   font-size: 1.5rem;
   position: relative;
+  cursor: pointer;
 
   ::before {
     content: '+';
@@ -18,5 +19,9 @@ export const MiniatureCard = styled.div`
     bottom: 0.5rem;
     right: 1rem;
     position: absolute;
+  }
+
+  h2 {
+    text-transform: capitalize;
   }
 `;

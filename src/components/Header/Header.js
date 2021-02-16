@@ -14,6 +14,7 @@ const Header = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setShowFilterTypes(false);
     if (pokemon) {
       const data = await getPokemon(pokemon);
       global.setPokemonData(data);

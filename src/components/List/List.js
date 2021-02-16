@@ -4,20 +4,10 @@ import { Main, ListMiniatures } from './style';
 import DetailsPokemon from '../DetailsPokemon/DetailsPokemon';
 import Miniature from '../Miniature/Miniature';
 
-import { getPokemonsInfo } from '../../services/pokemonsService';
-
 const List = () => {
   const global = useContext(GlobalContext);
   const { loading, listPokemons } = global;
-
-  // const loadPokemons = async (list) => {
-  //   const data = await getPokemonsInfo(list);
-  //   console.log('data: ', data);
-  // };
-
-  // useEffect(() => {
-  //   if (listPokemons.lenght) loadPokemons(listPokemons);
-  // }, [listPokemons]);
+  console.log('listPokemons: ', listPokemons);
 
   return (
     <Main>
@@ -25,28 +15,7 @@ const List = () => {
       {/* <DetailsPokemon /> */}
 
       <ListMiniatures>
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
-        <Miniature />
+        {listPokemons && listPokemons.map((item) => <Miniature data={item} />)}
       </ListMiniatures>
     </Main>
   );
