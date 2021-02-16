@@ -40,7 +40,6 @@ const Header = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    setShowFilterTypes(false);
     setLoading(true);
 
     if (pokemon) {
