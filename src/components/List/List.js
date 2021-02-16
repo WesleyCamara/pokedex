@@ -10,6 +10,14 @@ const List = () => {
 
   const [pokemonsData, setPokemonData] = useState([]);
 
+  const removerDuplicados = (array) => {
+    const newArray = array.filter(function (este, i) {
+      return array.indexOf(este) === i;
+    });
+
+    order(newArray);
+  };
+
   const order = (items) => {
     items.sort(
       (a, b) =>
@@ -21,12 +29,11 @@ const List = () => {
 
   const clearUrl = (url) => {
     const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
-
     return url.replace(baseUrl, '').replace('/', '');
   };
 
   useEffect(() => {
-    order(listPokemons);
+    removerDuplicados(listPokemons);
   });
 
   return (
