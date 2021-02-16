@@ -6,7 +6,12 @@ import { GlobalContext } from '../../GlobalContext';
 
 const FilterTypes = () => {
   const global = useContext(GlobalContext);
-  const { showFilterTypes, setShowFilterTypes } = global;
+  const {
+    setPokemon,
+    setListTypes,
+    showFilterTypes,
+    setShowFilterTypes,
+  } = global;
   const [types, setTypes] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
@@ -16,7 +21,7 @@ const FilterTypes = () => {
   }
 
   function handleChange({ target }) {
-    global.setPokemon('');
+    setPokemon('');
 
     if (target.checked) {
       setSelectedTypes([...selectedTypes, target.value]);
@@ -33,8 +38,8 @@ const FilterTypes = () => {
   }, []);
 
   useEffect(() => {
-    global.setListTypes(selectedTypes);
-  }, [global, selectedTypes]);
+    setListTypes(selectedTypes);
+  }, [selectedTypes]);
 
   useEffect(() => {
     if (!showFilterTypes) setSelectedTypes([]);

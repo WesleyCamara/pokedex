@@ -23,7 +23,6 @@ const List = () => {
     <Main>
       {loading && <h1>Loading...</h1>}
       {showDetails && <DetailsPokemon />}
-
       {!showDetails && pokemonsData && (
         <ListMiniatures>
           {pokemonsData &&
