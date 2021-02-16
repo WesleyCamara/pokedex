@@ -1,67 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { MiniatureCard } from './styles.js';
 
 import { getPokemonData } from '../../services/pokemonsService';
+
+import { GlobalContext } from '../../GlobalContext';
 
 import pokeball from '../../assets/img/pokeball.png';
 
 const Miniature = ({ data }) => {
   const { pokemon } = data;
 
-  const [pokemonData, setPokemonData] = useState({});
+  const global = useContext(GlobalContext);
+  const { setLoading, setShowDetails, setPokemonData } = global;
 
-  const loadPokemonData = async () => {
+  const [pokemonInfo, setPokemonInfo] = useState({});
+
+  const loadPokemonData = useCallback(async () => {
+    setLoading(true);
     const data = await getPokemonData(pokemon.url);
-    setPokemonData(data);
-  };
+    setPokemonInfo(data);
+    setLoading(false);
+  }, [pokemon.url, setLoading]);
 
   useEffect(() => {
     loadPokemonData();
-  }, []);
+  }, [loadPokemonData]);
 
   return (
-    <MiniatureCard>
-      <h2>{pokemonData.name}</h2>
-      <p>#{pokemonData.id}</p>
+    <MiniatureCard
+      onClick={() => {
+        setPokemonData(pokemonInfo);
+        setShowDetails(true);
+      }}
+    >
+      <h2>{pokemonInfo.name}</h2>
+      <p>#{pokemonInfo.id}</p>
 
       <img
         src={
-          pokemonData.sprites?.other['official-artwork'].front_default ||
+          pokemonInfo.sprites?.other['official-artwork'].front_default ||
           pokeball
         }
-        alt={pokemonData.name}
+        alt={pokemonInfo.name}
       />
     </MiniatureCard>
   );
 };
-
-// {
-//   pokemonData && (
-//     <DetailsWrapper>
-//       <h1>{pokemonData.name}</h1>
-//       <DataWrapper>
-//         <img
-//           src={pokemonData.sprites?.other['official-artwork'].front_default}
-//           alt={pokemonData.name}
-//         />
-//         <div>
-//           Height:
-//           <p>
-//             <span>{pokemonData.height}</span>
-//           </p>
-//           Weight:
-//           <p>
-//             <span>{pokemonData.weight}</span>
-//           </p>
-//           Type:
-//           {pokemonData.types &&
-//             pokemonData.types.map((item) => (
-//               <p key={item.slot}>{item.type.name}</p>
-//             ))}
-//         </div>
-//       </DataWrapper>
-//     </DetailsWrapper>
-//   );
-// }
 
 export default Miniature;

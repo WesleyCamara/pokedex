@@ -32,6 +32,11 @@ export const HeaderWrapper = styled.header`
 
   input {
     width: 30vw;
+
+    @media screen and (max-width: 1024px) {
+      order: 2;
+      width: 90vw;
+    }
   }
 
   button {
@@ -41,6 +46,10 @@ export const HeaderWrapper = styled.header`
     &:hover {
       color: ${(props) => props.theme.colors.background};
       background: ${(props) => props.theme.colors.secondary};
+    }
+
+    @media screen and (max-width: 1024px) {
+      order: 1;
     }
   }
 `;

@@ -11,6 +11,11 @@ export const FilterTypesWrapper = styled.div`
   margin: 0.5rem 1rem;
   position: relative;
 
+  @media screen and (max-width: 1024px) {
+    order: 3;
+    width: 90vw;
+  }
+
   div:nth-child(1) {
     width: 100%;
     display: flex;

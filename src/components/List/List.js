@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../GlobalContext';
 import { Main, ListMiniatures } from './style';
 import DetailsPokemon from '../DetailsPokemon/DetailsPokemon';
@@ -8,15 +8,28 @@ const List = () => {
   const global = useContext(GlobalContext);
   const { loading, listPokemons, showDetails } = global;
 
+  const [pokemonsData, setPokemonData] = useState([]);
+
+  const order = (items) => {
+    items.sort((a, b) => a.id - b.id);
+    setPokemonData(listPokemons);
+  };
+
+  useEffect(() => {
+    order(listPokemons);
+  }, [listPokemons]);
+
   return (
     <Main>
       {loading && <h1>Loading...</h1>}
       {showDetails && <DetailsPokemon />}
 
-      {!showDetails && (
+      {!showDetails && pokemonsData && (
         <ListMiniatures>
-          {listPokemons &&
-            listPokemons.map((item) => <Miniature data={item} />)}
+          {pokemonsData &&
+            pokemonsData.map((item, index) => (
+              <Miniature key={index} data={item} />
+            ))}
         </ListMiniatures>
       )}
     </Main>

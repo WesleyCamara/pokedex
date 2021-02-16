@@ -5,6 +5,10 @@ export const Main = styled.main`
   height: calc(100vh - 10rem);
   display: grid;
   place-items: center;
+
+  @media screen and (max-width: 1024px) {
+    padding: 4rem 1rem;
+  }
 `;
 
 export const ListMiniatures = styled.section`
@@ -13,4 +17,9 @@ export const ListMiniatures = styled.section`
   gap: 1rem;
   width: 100%;
   justify-content: center;
+  margin-bottom: 4rem;
+
+  @media screen and (max-width: 1024px) {
+    gap: 2rem;
+  }
 `;
