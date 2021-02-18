@@ -27,23 +27,27 @@ const Miniature = ({ data }) => {
   }, [loadPokemonData]);
 
   return (
-    <MiniatureCard
-      onClick={() => {
-        setPokemonData(pokemonInfo);
-        setShowDetails(true);
-      }}
-    >
-      <h2>{pokemonInfo.name}</h2>
-      <p>#{pokemonInfo.id}</p>
+    <>
+      {pokemonInfo && (
+        <MiniatureCard
+          onClick={() => {
+            setPokemonData(pokemonInfo);
+            setShowDetails(true);
+          }}
+        >
+          <h2>{pokemonInfo.name}</h2>
+          <p>#{pokemonInfo.id}</p>
 
-      <img
-        src={
-          pokemonInfo.sprites?.other['official-artwork'].front_default ||
-          pokeball
-        }
-        alt={pokemonInfo.name}
-      />
-    </MiniatureCard>
+          <img
+            src={
+              pokemonInfo.sprites?.other['official-artwork'].front_default ||
+              pokeball
+            }
+            alt={pokemonInfo.name}
+          />
+        </MiniatureCard>
+      )}
+    </>
   );
 };
 
