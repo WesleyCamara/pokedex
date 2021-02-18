@@ -3,6 +3,8 @@ import { GlobalContext } from '../../GlobalContext';
 
 import { DetailsWrapper, DataWrapper } from './styles';
 
+import pokeball from '../../assets/img/pokeball.png';
+
 const DetailsPokemon = () => {
   const global = useContext(GlobalContext);
 
@@ -18,7 +20,10 @@ const DetailsPokemon = () => {
 
           <DataWrapper>
             <img
-              src={pokemonData.sprites?.other['official-artwork'].front_default}
+              src={
+                pokemonData.sprites?.other['official-artwork'].front_default ||
+                pokeball
+              }
               alt={pokemonData.name}
             />
             <div>
